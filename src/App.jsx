@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import StardewSelect from './StardewSelect';
 import FirstInfo from './FirstInfo';
+import FarmInfo from './FarmInfo';
+import MoneyInfo from './MoneyInfo';
+import MuseumInfo from './MuseumInfo';
+import MineralArtifacts from './MineralArtifacts';
+import MinToDonate from './MinToDonate';
+import ArtToDonate from './ArtToDonate';
+import HomeInfo from './HomeInfo';
 import './App.css';
 
 class App extends Component {
@@ -10,18 +17,16 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       fileContent: [],
-      // for summary
-      // farmer: '',
-      // farm: '',
-      // pet: '',
-      // favThing: '',
       firstLine: [],
+      farmer: [],
       farmLine: [],
       moneyLine: [],
       museumLine: [],
       minartLine: [],
       minToDonate: [],
+      minLength: 0,
       artToDonate: [],
+      artLength: 0,
       homeLine: [],
       fiveHeartLine: [],
       tenHeartLine: [],
@@ -57,15 +62,8 @@ class App extends Component {
       // formatting for variables for the summary for player
       const firstLine = formatted[0].split(",");
       this.setState({firstLine: firstLine});
-      // const farmer = firstLine[0];
-      // this.setState({farmer: farmer});
-      // const farm = firstLine[1];
-      // this.setState({farm: farm});
-      // const pet = firstLine[2];
-      // this.setState({pet: pet});
-      // const favThing = firstLine[3];
-      // this.setState({favThing: favThing});
-      // formatting summary for farm
+      const farmer = firstLine[0];
+      this.setState({farmer: farmer});
       const farmLine = formatted[1].split(",");
       this.setState({farmLine: farmLine});
 
@@ -80,8 +78,12 @@ class App extends Component {
       this.setState({minartLine: minartLine});
       const minToDonate = formatted[5].split(",");
       this.setState({minToDonate: minToDonate});
+      const minLength = minToDonate.length;
+      this.setState({minLength: minLength});
       const artToDonate = formatted[6].split(",");
       this.setState({artToDonate: artToDonate});
+      const artLength = artToDonate.length;
+      this.setState({artLength: artLength});
 
       // formatting for info about family
       const homeLine = formatted[7].split(",");
@@ -140,154 +142,6 @@ class App extends Component {
 
   handleSubmit(value) {
   	this.setState({menu: value});
-
-
-  	console.log(value);
-  }
-
-  formatMoneyLine(farmer, moneyLine) {
-  	let moneyAchievements
-  	let greenhorn_diff
-  	let prettyMoney
-
-  	prettyMoney = moneyLine.toLocaleString()
-  	moneyAchievements = farmer + ' has earned a total of ' + prettyMoney + 'g\n'
-
-  	{(moneyLine >= 1.5e4) ? moneyAchievements = moneyAchievements + 'GREENHORN achievement (earn 15,000g) done\n' : 
-  		(greenhorn_diff = 1.5e4 - moneyLine) + 
-  		(greenhorn_diff = greenhorn_diff.toLocaleString()) +
-  		(moneyAchievements = moneyAchievements + 'GREENHORN achievement (earn 15,000g) -- need ' + greenhorn_diff + 'g more\n')};
-
-  	{(moneyLine >= 5e4) ? moneyAchievements = moneyAchievements + 'COWPOKE achievement (earn 50,000g) done\n' : 
-  		(greenhorn_diff = 5e4 - moneyLine) + 
-  		(greenhorn_diff = greenhorn_diff.toLocaleString()) +
-  		(moneyAchievements = moneyAchievements + 'COWPOKE achievement (earn 50,000g) -- need ' + greenhorn_diff + 'g more\n')};
-
-	{(moneyLine >= 2.5e5) ? moneyAchievements = moneyAchievements + 'HOMESTEADER achievement (earn 250,000g) done\n' : 
-  		(greenhorn_diff = 2.5e5 - moneyLine) + 
-  		(greenhorn_diff = greenhorn_diff.toLocaleString()) +
-  		(moneyAchievements = moneyAchievements + 'HOMESTEADER achievement (earn 250,000g) -- need ' + greenhorn_diff + 'g more\n')};
-
-	{(moneyLine >= 1e6) ? moneyAchievements = moneyAchievements + 'MILLIONAIRE achievement (earn 1,000,000g) done\n' : 
-  		(greenhorn_diff = 1e6 - moneyLine) + 
-  		(greenhorn_diff = greenhorn_diff.toLocaleString()) +
-  		(moneyAchievements = moneyAchievements + 'MILLIONAIRE achievement (earn 1,000,000g) -- need ' + greenhorn_diff + 'g more\n')};
-
-	{(moneyLine >= 1e7) ? moneyAchievements = moneyAchievements + 'LEGEND achievement (earn 10,000,000g) done' : 
-  		(greenhorn_diff = 1e7 - moneyLine) + 
-  		(greenhorn_diff = greenhorn_diff.toLocaleString()) +
-  		(moneyAchievements = moneyAchievements + 'LEGEND achievement (earn 10,000,000g) -- need ' + greenhorn_diff + 'g more')};
-
-  	return moneyAchievements.split('\n').map(achievement => <li>{achievement}</li>);
-  }
-
-  formatMuseumLine(farmer, museumLine) {
-  	let museumAchievements
-  	let donate_diff
-
-  	museumAchievements = farmer + ' has donated ' + museumLine + ' of 95 items to the museum.\n'
-
-  	{(museumLine >= 40) ? museumAchievements = museumAchievements + 'TREASURE TROVE achievement (donate 40 items) done\n' : 
-  		(donate_diff = 40 - museumLine) + 
-  		(museumAchievements = museumAchievements + 'TREASURE TROVE ahievement (donate 40 items) -- need ' + donate_diff + ' more donations\n')};
-  	
-  	{(museumLine >= 60) ? museumAchievements = museumAchievements + 'Rusty Key obtained (donate 60 items) done\n' : 
-  		(donate_diff = 60 - museumLine) + 
-  		(museumAchievements = museumAchievements + 'Rusty Key possible (donate 60 items) -- need ' + donate_diff + ' more donations\n')};
-
-  	{(museumLine == 95) ? museumAchievements = museumAchievements + 'A COMPLETE COLLECTION achievement (donate every item) done' : 
-  		(donate_diff = 95 - museumLine) + 
-  		(museumAchievements = museumAchievements + 'A COMPLETE COLLECTION achievement (donate every item) -- need ' + donate_diff + ' more donations\n' + 
-  			'See below for items that still need to be donated.')};
-
-  	return museumAchievements.split('\n').map(achievement => <li>{achievement}</li>);
-  }
-
-  formatMineralsArtifacts(farmer, minartLine) {
-  	let mineralArtifact
-  	let fmin_diff
-
-  	mineralArtifact = farmer + ' has found ' + minartLine[0] + ' of 53 minerals\n'
-  	mineralArtifact = mineralArtifact + farmer + ' has found ' + minartLine[3] + ' of 42 artifacts\n'
-
-  	{(minartLine[0] == 53) ? mineralArtifact = mineralArtifact + 'All minerals found\n' : 
-		(fmin_diff = 53 - minartLine[0]) +
-		(mineralArtifact = mineralArtifact + 'All minerals found -- need ' + fmin_diff + ' more\n')};
-
-	{(minartLine[3] == 42) ? mineralArtifact = mineralArtifact + 'All artifacts found' : 
-		(fmin_diff = 42 - minartLine[3]) +
-		(mineralArtifact = mineralArtifact + 'All artifacts found -- need ' + fmin_diff + ' more')};	
-
-	return mineralArtifact.split('\n').map(achievement => <li>{achievement}</li>);	
-  }
-
-  formatMinToDonate(farmer, minToDonate) {
-  	let leftToDonate
-  	let length
-
-  	leftToDonate = 'Mineral(s)\n'
-  	length = minToDonate.length;
-
-  	for (var i = length - 1; i >= 0; i--) {
-  		if(minToDonate[i] !== '') {
-  			leftToDonate = leftToDonate + minToDonate[i] + '\n'
-  		}
-  	}
-
-  	return leftToDonate.split('\n').map(achievement => <li>{achievement}</li>);
-  }
-
-  formatArtToDonate(farmer, artToDonate) {
-  	let leftToDonate
-  	let length
-
-  	leftToDonate = 'Artifact(s)\n'
-  	length = artToDonate.length;
-
-  	for (var i = length - 1; i >= 0; i--) {
-  		if(artToDonate[i] !== '') {
-  			leftToDonate = leftToDonate + artToDonate[i] + '\n'
-  		}
-  	}
-
-  	return leftToDonate.split('\n').map(achievement => <li>{achievement}</li>);
-  }
-
-  formatHome(farmer, homeLine) {
-  	let home
-  	let levelDiff
-
-  	{(homeLine[0] !== '') ? home = farmer + "'s spouse: " + homeLine[0] + '\n' : home = farmer + ' has no spouse\n'};
-
-  	if (homeLine[1] !== '' & homeLine[2] !== '') {
-  		home = home + farmer + "'s children: " + homeLine[1] + ', ' + homeLine[2] + '\n'
-  	} else if (homeLine[1] !== '' & homeLine[2] == '') {
-  		home = home + farmer + "'s child: " + homeLine[1] + '\n'
-  	} else {
-  		home = home + farmer + ' has no children\n'
-  	}
-
-  	if (homeLine[0] !== '') {
-  		if (homeLine[1] !== '' & homeLine[2] !== '') {
-  			home = home + 'Full House (Married + 2 kids) done\n'
-  		} else if (homeLine[1] !== '' & homeLine[2] == '') {
-  			home = home + 'Full House (Married + 2 kids) -- need 1 more kid\n'
-  		} else {
-  			home = home + 'Full House (Married + 2 kids) -- need 2 more kids\n'
-  		}
-  	} else {
-  		home = home + 'Full House (Married + 2 kids) -- need a spouse and 2 more kids\n'	
-  	}
-
-  	home = home + 'Farm House upgraded ' + homeLine[3] + ' time(s) of 3 possible\n'
-
-  	{(homeLine[3] >= 1) ? home = home + 'Moving Up (1 upgrade) done\n' : (levelDiff = 1) + (home = home + 'Moving Up (1 upgrade) -- need ' + levelDiff + ' more level(s)\n')};
-
-  	{(homeLine[3] >= 2) ? home = home + 'Living Large (2 upgrades) done\n' : (levelDiff = 2 - homeLine[3]) + (home = home + 'Living Large (2 upgrades) -- need ' + levelDiff + ' more level(s)\n')};
-
-  	{(homeLine[3] == 3) ? home = home + 'House fully upgraded' : (levelDiff = 3 - homeLine[3]) + (home = home + 'House fully upgraded -- need ' + levelDiff + ' more level(s)')};
-
-  	return home.split('\n').map(achievement => <li>{achievement}</li>);
   }
 
   formatFiveHeartAchieve(farmer, fiveHeartLine) {
@@ -593,50 +447,9 @@ class App extends Component {
 
   render() {
     const list = this.state.fileContent.map(achievement => <li>{achievement}</li>);
-    // const first = this.state.firstLine.map(function(first, i) { 
-      
-    //   // let is mutable variable
-    //   let prefix;
-    //   if (i==0) {
-    //     prefix = 'Farmer name: ' + first 
-    //   } else if (i==1) {
-    //     prefix = 'Farm name: ' + first
-    //   } else if (i==2) {
-    //     prefix = 'Pet type: ' + first
-    //   } else {
-    //     prefix = 'Favorite thing: ' + first
-    //   }
+    let minLength
+    let artLength
 
-    //   return <li>{prefix}</li>
-    // });
-
-    // const farmer = this.state.farmer;
-    // const farm = this.state.farm;
-    // const pet = this.state.pet;
-    // const favThing = this.state.favThing;
-
-    const farmInfo = this.state.farmLine.map(function(farmInfo, i) {
-
-      let pre;
-      if (i==0) {
-        pre = 'Farm type: ' + farmInfo
-      } else if (i==1) {
-        pre = 'Day: ' + farmInfo
-      } else if (i==2) {
-        pre = 'Season: ' + farmInfo
-      } else {
-        pre = 'Year: ' + farmInfo
-      }
-
-      return <li>{pre}</li>
-    });
-
-    let moneyInfo
-    let museumInfo
-    let minartInfo
-    let mineralDonate
-    let artifactDonate
-    let homeInfo
     let fiveHeartInfo
     let tenHeartInfo
     let cookingInfo
@@ -652,13 +465,6 @@ class App extends Component {
     let grandpaInfo
 
     if (this.state.hasRendered == true) {
-    	moneyInfo = this.formatMoneyLine(this.state.farmer, this.state.moneyLine);
-    	//moneyInfo = this.getHighlightedText(this.formatMoneyLine(this.state.farmer, this.state.moneyLine), 'gi');
-    	museumInfo = this.formatMuseumLine(this.state.farmer, this.state.museumLine);
-    	minartInfo = this.formatMineralsArtifacts(this.state.farmer, this.state.minartLine);
-    	mineralDonate = this.formatMinToDonate(this.state.farmer, this.state.minToDonate);
-    	artifactDonate = this.formatArtToDonate(this.state.farmer, this.state.artToDonate);
-    	homeInfo = this.formatHome(this.state.farmer, this.state.homeLine);
     	fiveHeartInfo = this.formatFiveHeartAchieve(this.state.farmer, this.state.fiveHeartLine);
     	tenHeartInfo = this.formatTenHeartAchieve(this.state.farmer, this.state.tenHeartLine);
     	cookingInfo = this.formatCookingAchieve(this.state.farmer, this.state.cookingLine);
@@ -687,23 +493,37 @@ class App extends Component {
           </div>
           <StardewSelect onSubmit={this.handleSubmit} />
           <pre id="fileDisplayArea" /><pre />
-          {this.state.hasRendered && this.state.menu == 'general' ? <div className = 'info'><p>General Info</p> <FirstInfo firstLine={this.state.firstLine} /> </div>: <p />}
-          {this.state.hasRendered && this.state.menu == 'money' ? <div className = 'info'><p>Money Info</p> <ul>{moneyInfo}</ul></div> : <p />}
-          {this.state.hasRendered && this.state.menu == 'museum' ? <div><p>Museum Info</p> <ul>{museumInfo} <br /> {minartInfo}{mineralDonate}{artifactDonate}</ul></div> : <p />}
-          {this.state.hasRendered && this.state.menu == 'home' ? <div><p>Home Info</p> <ul>{homeInfo}</ul></div>: <p />}
+          {this.state.hasRendered && this.state.menu == 'general' ? <div className = 'info'><h3>General Info</h3> <FirstInfo firstLine={this.state.firstLine} /><FarmInfo farmLine={this.state.farmLine} /></div>: <p />}
+          {this.state.hasRendered && this.state.menu == 'money' ? <div className = 'info'><h3>Money Info</h3> <MoneyInfo moneyLine={parseInt(this.state.moneyLine)} farmer={this.state.farmer} /></div> : <p />}
+          {this.state.hasRendered && this.state.menu == 'museum' ? <div className = 'info'><h3>Museum Info</h3> <MuseumInfo museumLine={this.state.museumLine} farmer= {this.state.farmer} /><MineralArtifacts minartLine={this.state.minartLine} farmer={this.state.farmer} />{this.state.minLength > 0 && <MinToDonate minToDonate={this.state.minToDonate} length={this.state.minLength} />}{this.state.artLength > 0 && <ArtToDonate artToDonate={this.state.artToDonate} length={this.state.artLength} />}</div> : <p />}
+          {this.state.hasRendered && this.state.menu == 'home' ? <div className = 'info'><h3>Home Info</h3> <HomeInfo homeLine={this.state.homeLine} farmer={this.state.farmer} /></div>: <p />}
+          
           {this.state.hasRendered && this.state.menu == 'social' ? <div> <p>Social Info</p> <ul>{fiveHeartInfo}{tenHeartInfo}</ul></div> : <p />}
+          
           {this.state.hasRendered && this.state.menu == 'family' ? <div> <p>Family Hearts Info</p> <ul>{childInfo}</ul></div>: <p />}
+          
           {this.state.hasRendered && this.state.menu == 'friendship' ? <div> <p>Friendship Hearts Info</p> <ul>{childInfo}</ul><br /><ul>{friendInfo}</ul></div> : <p />}
+          
           {this.state.hasRendered && this.state.menu == 'cooking' ? <div> <p>Cooking Info</p> <ul>{cookingInfo}</ul></div>: <p />}
+          
           {this.state.hasRendered && this.state.menu == 'fishing' ? <div> <p>Fishing Info</p> <ul>{fishingInfo}</ul></div>: <p />}
+          
           {this.state.hasRendered && this.state.menu == 'quest' ? <div> <p>Quest Info</p> <ul>{questInfo}</ul></div>: <p />}
+          
           {this.state.hasRendered && this.state.menu == 'shipping' ? <div> <p>Shipping Info</p> <ul>{shipInfo}</ul></div>: <p />}
+          
           {this.state.hasRendered && this.state.menu == 'skill' ? <div> <p>Skill Info</p> <ul>{skillInfo}</ul></div>: <p />}
+          
           {this.state.hasRendered && this.state.menu == 'mine' ? <div> <p>Mine Info</p> <ul>{mineInfo}</ul></div>: <p />}
+          
           {this.state.hasRendered && this.state.menu == 'monster' ? <div> <p>Monster Info</p> <ul>{monsterInfo}</ul></div>: <p />}
+          
           {this.state.hasRendered && this.state.menu == 'stardrop' ? <div> <p>Stardrop Info</p> <ul>{stardropInfo}</ul></div>: <p />}
+          
           {this.state.hasRendered && this.state.menu == 'secret' ? <div> <p>Secret Info</p> <ul>{secretInfo}</ul></div>: <p />}
+          
           {this.state.hasRendered && this.state.menu == 'center' ? <div> <p>Center Info</p> <ul>{centerInfo}</ul></div>: <p />}
+          
           {this.state.hasRendered && this.state.menu == 'grandpa' ? <div><p>Grandpa Info</p> <ul>{grandpaInfo}</ul></div>: <p />}
         </div>
       </div>
@@ -712,27 +532,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-// window.onload = function() {
-//     var fileInput = document.getElementById('fileInput');
-//     var fileDisplayArea = document.getElementById('fileDisplayArea');
-
-//     fileInput.addEventListener('change', function(e) {
-//       var file = fileInput.files[0];
-//       var textType = /text.*/;
-
-//       if (file.type.match(textType)) {
-//         var reader = new FileReader();
-
-//         reader.onload = function(e) {
-//           fileDisplayArea.innerText = reader.result;
-//         }
-
-//         reader.readAsText(file);  
-//       } else {
-//         fileDisplayArea.innerText = "File not supported!"
-//       }
-//     });
-// }

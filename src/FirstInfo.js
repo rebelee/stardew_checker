@@ -6,9 +6,9 @@ class FirstInfo extends Component {
 		return ( 
 			<ul> 
 				<li><strong>Farmer Name: </strong>{this.props.firstLine[0]}</li> 
-				<li><strong>Farm Name: </strong>{this.props.firstLine[0]}</li> 
-				<li><strong>Pet Type: </strong>{this.props.firstLine[0]}</li> 
-				<li><strong>Favorite Thing: </strong>{this.props.firstLine[0]}</li> 
+				<li><strong>Farm Name: </strong>{this.props.firstLine[1]}</li> 
+				<li><strong>Pet Type: </strong>{this.props.firstLine[2]}</li> 
+				<li><strong>Favorite Thing: </strong>{this.props.firstLine[3]}</li> 
 			</ul>
 		);
 	}
