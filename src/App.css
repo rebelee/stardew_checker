@@ -26,3 +26,22 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.display-linebreak {
+  white-space: pre-line;
+}
+
+.test {
+  border: 5px solid red;
+}
+
+@font-face {
+  font-family: 'StardewFont';
+  src: url('StardewValley.ttf');
+}
+.info {
+  background: rgb(250, 188, 115) no-repeat;
+  font-family: 'StardewFont';
+  border: 5px groove rgb(196, 108, 26);
+  border-radius: 5px;
+}
