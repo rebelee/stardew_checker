@@ -8,19 +8,21 @@ class Social10H extends Component {
 		bh10diff = 8 - this.props.tenHeartLine;
 
 		return ( 
-			<ul>
-				<li>{this.props.farmer} has <strong>{this.props.tenHeartLine} relationship(s)</strong> of 10+ hearts. </li>
+			<ul class = 'main'>
+				<li class = 'main-list'>{this.props.farmer} has <strong>{this.props.tenHeartLine} relationship(s)</strong> of 10+ hearts. </li>
 
-				{this.props.tenHeartLine >= 1 ? (
-					<li><i>BEST FRIENDS</i> achievement (10H with 1 person) <strong>done</strong></li>
-				) : (
-					<li><i>BEST FRIENDS</i> achievement (10H with 1 person) -- <strong>need 1 more friend</strong></li>
-				)}
-				{this.props.tenHeartLine >= 8 ? (
-					<li><i>THE BELOVED FARMER</i> achievement (10H with 8 people) <strong>done</strong></li>
-				) : (
-					<li><i>THE BELOVED FARMER</i> achievement (10H with 8 people) -- <strong>need {bh10diff} more friend(s)</strong></li>
-				)}
+				<ul class = 'indent'>
+					{this.props.tenHeartLine >= 1 ? (
+						<li class = 'check'><i>BEST FRIENDS</i> achievement (10H with 1 person) <strong>done</strong></li>
+					) : (
+						<li class = 'x'><i>BEST FRIENDS</i> achievement (10H with 1 person) -- <strong>need 1 more friend</strong></li>
+					)}
+					{this.props.tenHeartLine >= 8 ? (
+						<li class = 'check'><i>THE BELOVED FARMER</i> achievement (10H with 8 people) <strong>done</strong></li>
+					) : (
+						<li class = 'x'><i>THE BELOVED FARMER</i> achievement (10H with 8 people) -- <strong>need {bh10diff} more friend(s)</strong></li>
+					)}
+				</ul>
 			</ul>
 		);
 	}

@@ -21,10 +21,10 @@ class FamilyHearts extends Component {
 		}
 
 		return ( 
-			<ul>
-				<li><strong>{spouseSplit[0]}:</strong> {spouseSplit[1]}</li>
-				<li><strong>{childOneSplit[0]}:</strong> {childOneSplit[1]}</li>
-				<li><strong>{childTwoSplit[0]}:</strong> {childTwoSplit[1]}</li>
+			<ul class = 'main'>
+				<li class = 'main-list'><strong>{spouseSplit[0]}:</strong> {spouseSplit[1]}</li>
+				<li class = 'main-list'><strong>{childOneSplit[0]}:</strong> {childOneSplit[1]}</li>
+				<li class = 'main-list'><strong>{childTwoSplit[0]}:</strong> {childTwoSplit[1]}</li>
 			</ul>
 		);
 	}

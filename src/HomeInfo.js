@@ -31,45 +31,50 @@ class HomeInfo extends Component {
  	 	fdiff = 3 - this.props.homeLine[3];
 
 		return ( 
-			<ul>
+			<ul class = 'main'>
 				{spouse ? (
-					<li><strong>{this.props.farmer}'s spouse:</strong> {this.props.homeLine[0]}</li>
+					<li class = 'main-list'><strong>{this.props.farmer}'s spouse:</strong> {this.props.homeLine[0]}</li>
 				) : (
-					<li>{this.props.farmer} has <strong>no spouse</strong></li>
+					<li class = 'main-list'>{this.props.farmer} has <strong>no spouse</strong></li>
 				)}
 
 				{two_kids &&
-					<li><strong>{this.props.farmer}'s children:</strong> {this.props.homeLine[1]}, {this.props.homeLine[2]}</li>}
+					<li class = 'main-list'><strong>{this.props.farmer}'s children:</strong> {this.props.homeLine[1]}, {this.props.homeLine[2]}</li>}
 				{one_kid &&
-					<li><strong>{this.props.farmer}'s child:</strong> {this.props.homeLine[1]}</li>}
+					<li class = 'main-list'><strong>{this.props.farmer}'s child:</strong> {this.props.homeLine[1]}</li>}
 				{no_kids &&
-					<li>{this.props.farmer} has <strong>no children</strong></li>}
+					<li class = 'main-list'>{this.props.farmer} has <strong>no children</strong></li>}
 
-				{(spouse && two_kids) &&
-					<li><i>FULL HOUSE</i> (Married and 2 kids) <strong>done</strong></li>}
-				{(spouse && one_kid) &&
-					<li><i>FULL HOUSE</i> (Married and 2 kids) -- <strong>need 1 more kid</strong></li>}
-				{(spouse && no_kids) &&
-					<li><i>FULL HOUSE</i> (Married and 2 kids) -- <strong>need 2 more kids</strong></li>}
-				{(!spouse && no_kids) &&
-					<li><i>FULL HOUSE</i> (Married and 2 kids) -- <strong>need a spouse and 2 more kids</strong></li>}
-
-				<li>Farm House <strong>upgraded {this.props.homeLine[3]}</strong> time(s) of 3 possible</li>
-				{this.props.homeLine[3] >= 1 ? (
-					<li><i>MOVING UP</i> (1 upgrade) <strong>done</strong></li>
-				) : (
-					<li><i>MOVING UP</i> (1 upgrade) -- <strong>need 1 more upgrade</strong></li>
-				)}
-				{this.props.homeLine[3] >= 2 ? (
-					<li><i>LIVING LARGE</i> (2 upgrades) <strong>done</strong></li>
-				) : (
-					<li><i>LIVING LARGE</i> (2 upgrades) -- <strong>need {ldiff} more upgrade(s)</strong></li>
-				)}
-				{this.props.homeLine[3] == 3 ? (
-					<li>House fully upgraded (3 upgrades) <strong>done</strong></li>
-				) : (
-					<li>House fully upgraded (3 upgrades) -- <strong>need {fdiff} more upgrade(s)</strong></li>
-				)}
+				<ul class = 'indent'>
+					{(spouse && two_kids) &&
+						<li class = 'check'><i>FULL HOUSE</i> (Married and 2 kids) <strong>done</strong></li>}
+					{(spouse && one_kid) &&
+						<li class = 'x'><i>FULL HOUSE</i> (Married and 2 kids) -- <strong>need 1 more kid</strong></li>}
+					{(spouse && no_kids) &&
+						<li class = 'x'><i>FULL HOUSE</i> (Married and 2 kids) -- <strong>need 2 more kids</strong></li>}
+					{(!spouse && no_kids) &&
+						<li class = 'x'><i>FULL HOUSE</i> (Married and 2 kids) -- <strong>need a spouse and 2 more kids</strong></li>}
+				</ul>
+				<br />
+				
+				<li class = 'main-list'>Farm House <strong>upgraded {this.props.homeLine[3]}</strong> time(s) of 3 possible</li>
+				<ul class = 'indent'>
+					{this.props.homeLine[3] >= 1 ? (
+						<li class = 'check'><i>MOVING UP</i> (1 upgrade) <strong>done</strong></li>
+					) : (
+						<li class = 'x'><i>MOVING UP</i> (1 upgrade) -- <strong>need 1 more upgrade</strong></li>
+					)}
+					{this.props.homeLine[3] >= 2 ? (
+						<li class = 'check'><i>LIVING LARGE</i> (2 upgrades) <strong>done</strong></li>
+					) : (
+						<li class = 'x'><i>LIVING LARGE</i> (2 upgrades) -- <strong>need {ldiff} more upgrade(s)</strong></li>
+					)}
+					{this.props.homeLine[3] == 3 ? (
+						<li class = 'check'>House fully upgraded (3 upgrades) <strong>done</strong></li>
+					) : (
+						<li class = 'x'>House fully upgraded (3 upgrades) -- <strong>need {fdiff} more upgrade(s)</strong></li>
+					)}
+				</ul>
 			</ul>
 		);
 	}

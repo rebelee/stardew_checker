@@ -4,11 +4,11 @@ class FarmInfo extends Component {
 
 	render () {
 		return ( 
-			<ul> 
-				<li><strong>Farm Type: </strong>{this.props.farmLine[0]}</li> 
-				<li><strong>Day: </strong>{this.props.farmLine[1]}</li>
-				<li><strong>Season: </strong>{this.props.farmLine[2]}</li> 
-				<li><strong>Year: </strong>{this.props.farmLine[3]}</li>
+			<ul class = 'main'> 
+				<li class = 'main-list'><strong>Farm Type: </strong>{this.props.farmLine[0]}</li> 
+				<li class = 'main-list'><strong>Day: </strong>{this.props.farmLine[1]}</li>
+				<li class = 'main-list'><strong>Season: </strong>{this.props.farmLine[2]}</li> 
+				<li class = 'main-list'><strong>Year: </strong>{this.props.farmLine[3]}</li>
 			</ul>
 		);
 	}

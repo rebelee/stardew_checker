@@ -10,45 +10,45 @@ class CenterInfo extends Component {
 		ldiff = 6 - this.props.centerLine[3];
 
 		return ( 
-			<ul>
+			<ul class = 'main'>
 				{this.props.centerLine[0] === 'TRUE' ? (
-					<li>{this.props.farmer} <strong>is</strong> a Joja Member and <strong>cannot complete</strong> the Community Center bundles</li>
+					<li class = 'main-list'>{this.props.farmer} <strong>is</strong> a Joja Member and <strong>cannot complete</strong> the Community Center bundles</li>
 				) : (
-					<li>{this.props.farmer} <strong>is not</strong> a Joja Member and has completed <strong>{this.props.centerLine[3]}</strong> of the 6 Community Center Rooms</li>
+					<li class = 'main-list'>{this.props.farmer} <strong>is not</strong> a Joja Member and has completed <strong>{this.props.centerLine[3]}</strong> of the 6 Community Center Rooms</li>
 				)}
 
 				{this.props.centerLine[0] === 'TRUE' && this.props.centerLine[1] === 'TRUE' ? (
-					<li>{this.props.farmer} <strong>has attended</strong> the completion ceremony<br /><li><i>JOJA CO. MEMBER OF THE YEAR</i> achievement (become a Joja member and purchase all community development perks) <strong>done</strong></li><li><i>LOCAL LEGEND</i><strong> impossible</strong></li></li>
+					<li class = 'main-list'>{this.props.farmer} <strong>has attended</strong> the completion ceremony<br /><li class = 'check'><i>JOJA CO. MEMBER OF THE YEAR</i> achievement (become a Joja member and purchase all community development perks) <strong>done</strong></li><li class = 'impossible'><i>LOCAL LEGEND</i><strong> impossible</strong></li></li>
 				) : (
 					null
 				)}
 
 				{this.props.centerLine[1] === 'FALSE' && this.props.centerLine[3] === 5 ? (
-					<li>{this.props.farmer} <strong>has not attended</strong> the completion ceremony<br /><li><i>JOJA CO. MEMBER OF THE YEAR</i> achievement (become a Joja member and purchase all community development perks) <strong>done</strong></li><li><i>LOCAL LEGEND</i><strong> impossible</strong></li></li>
+					<li class = 'main-list'>{this.props.farmer} <strong>has not attended</strong> the completion ceremony<br /><li class = 'check'><i>JOJA CO. MEMBER OF THE YEAR</i> achievement (become a Joja member and purchase all community development perks) <strong>done</strong></li><li class = 'impossible'><i>LOCAL LEGEND</i><strong> impossible</strong></li></li>
 				) : (
 					null
 				)}
 
 				{this.props.centerLine[1] === 'FALSE' && this.props.centerLine[3] <= 5 ? (
-					<li>{this.props.farmer} <strong>has not attended</strong> the completion ceremony<br /><li><i>JOJA CO. MEMBER OF THE YEAR</i> achievement (become a Joja member and purchase all community development perks) --<strong> need {numJojaDiff} more perk(s)</strong></li><li><i>LOCAL LEGEND</i><strong> impossible</strong></li></li>
+					<li class = 'main-list'>{this.props.farmer} <strong>has not attended</strong> the completion ceremony<br /><li class = 'x'><i>JOJA CO. MEMBER OF THE YEAR</i> achievement (become a Joja member and purchase all community development perks) --<strong> need {numJojaDiff} more perk(s)</strong></li><li class = 'impossible'><i>LOCAL LEGEND</i><strong> impossible</strong></li></li>
 				) : (
 					null
 				)}
 
 				{this.props.centerLine[0] === 'FALSE' && this.props.centerLine[2] === 'TRUE' ? (
-					<li>{this.props.farmer} <strong>has attended</strong> the completion ceremony<br /><li><i>JOJA CO. MEMBER OF THE YEAR</i> achievement (become a Joja member and purchase all community development perks) <strong>impossible</strong></li><li><i>LOCAL LEGEND</i><strong> done</strong></li></li>
+					<li class = 'main-list'>{this.props.farmer} <strong>has attended</strong> the completion ceremony<br /><li class = 'impossible'><i>JOJA CO. MEMBER OF THE YEAR</i> achievement (become a Joja member and purchase all community development perks) <strong>impossible</strong></li><li class = 'check'><i>LOCAL LEGEND</i><strong> done</strong></li></li>
 				) : (
 					null
 				)}
 
 				{this.props.centerLine[2] === 'FALSE' && this.props.centerLine[3] === 6 ? (
-					<li>{this.props.farmer} <strong>has not attended</strong> the completion ceremony<br /><li><i>JOJA CO. MEMBER OF THE YEAR</i> achievement (become a Joja member and purchase all community development perks) <strong>impossible</strong></li><li><i>LOCAL LEGEND</i><strong> done</strong></li></li>
+					<li class = 'main-list'>{this.props.farmer} <strong>has not attended</strong> the completion ceremony<br /><li class = 'impossible'><i>JOJA CO. MEMBER OF THE YEAR</i> achievement (become a Joja member and purchase all community development perks) <strong>impossible</strong></li><li class = 'check'><i>LOCAL LEGEND</i><strong> done</strong></li></li>
 				) : (
 					null
 				)}
 
 				{this.props.centerLine[2] === 'FALSE' && this.props.centerLine[3] !== 6 ? (
-					<li>{this.props.farmer} <strong>has not attended</strong> the completion ceremony<br /><li><i>JOJA CO. MEMBER OF THE YEAR</i> achievement (become a Joja member and purchase all community development perks) <strong>impossible</strong></li><li><i>LOCAL LEGEND</i> -- <strong>need {ldiff}</strong> more</li></li>
+					<li class = 'main-list'>{this.props.farmer} <strong>has not attended</strong> the completion ceremony<br /><li class = 'impossible'><i>JOJA CO. MEMBER OF THE YEAR</i> achievement (become a Joja member and purchase all community development perks) <strong>impossible</strong></li><li class = 'x'><i>LOCAL LEGEND</i> -- <strong>need {ldiff}</strong> more</li></li>
 				) : (
 					null
 				)}

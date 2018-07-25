@@ -18,33 +18,35 @@ class MoneyInfo extends Component {
 		lgreenhorn_diff = (1e7 - this.props.moneyLine).toLocaleString();
 
 		return ( 
-			<ul> 
-				<li>{this.props.farmer} has earned a <strong>total of {prettyMoney}g</strong></li>
-				{this.props.moneyLine >= 1.5e4 ? (
-					<li><i>GREENHORN</i> achievement (earn 15,000g) <strong>done</strong></li>
-				) : (
-					<li><i>GREENHORN</i> achievement (earn 15,000g) -- <strong>need {ggreenhorn_diff}g more</strong></li>
-				)}
-				{this.props.moneyLine >= 5e4 ? (
-					<li><i>COWPOKE</i> achievement (earn 50,000g) <strong>done</strong></li>
-				) : (
-					<li><i>COWPOKE</i> achievement (earn 50,000g) -- <strong>need {cgreenhorn_diff}g more</strong></li>
-				)}
-				{this.props.moneyLine >= 2.5e5 ? (
-					<li><i>HOMESTEADER</i> achievement (earn 250,000g) <strong>done</strong></li>
-				) : (
-					<li><i>HOMESTEADER</i> achievement (earn 250,000g) -- <strong>need {hgreenhorn_diff}g more</strong></li>
-				)}
-				{this.props.moneyLine >= 1e6 ? (
-					<li><i>MILLIONAIRE</i> achievement (earn 1,000,000g) <strong>done</strong></li>
-				) : (
-					<li><i>MILLIONAIRE</i> achievement (earn 1,000,000g) -- <strong>need {mgreenhorn_diff}g more</strong></li>
-				)}
-				{this.props.moneyLine >= 1e7 ? (
-					<li><i>LEGEND</i> achievement (earn 10,000,000g) <strong>done</strong></li>
-				) : (
-					<li><i>LEGEND</i> achievement (earn 10,000,000g) -- <strong>need {lgreenhorn_diff}g more</strong></li>
-				)}
+			<ul class = 'main'> 
+				<li class = 'main-list'>{this.props.farmer} has earned a <strong>total of {prettyMoney}g</strong></li>
+				<ul class = 'indent'>
+					{this.props.moneyLine >= 1.5e4 ? (
+						<li class = 'check'><i>GREENHORN</i> achievement (earn 15,000g) <strong>done</strong></li>
+					) : (
+						<li class = 'x'><i>GREENHORN</i> achievement (earn 15,000g) -- <strong>need {ggreenhorn_diff}g more</strong></li>
+					)}
+					{this.props.moneyLine >= 5e4 ? (
+						<li class = 'check'><i>COWPOKE</i> achievement (earn 50,000g) <strong>done</strong></li>
+					) : (
+						<li class = 'x'><i>COWPOKE</i> achievement (earn 50,000g) -- <strong>need {cgreenhorn_diff}g more</strong></li>
+					)}
+					{this.props.moneyLine >= 2.5e5 ? (
+						<li class = 'check'><i>HOMESTEADER</i> achievement (earn 250,000g) <strong>done</strong></li>
+					) : (
+						<li class = 'x'><i>HOMESTEADER</i> achievement (earn 250,000g) -- <strong>need {hgreenhorn_diff}g more</strong></li>
+					)}
+					{this.props.moneyLine >= 1e6 ? (
+						<li class = 'check'><i>MILLIONAIRE</i> achievement (earn 1,000,000g) <strong>done</strong></li>
+					) : (
+						<li class = 'x'><i>MILLIONAIRE</i> achievement (earn 1,000,000g) -- <strong>need {mgreenhorn_diff}g more</strong></li>
+					)}
+					{this.props.moneyLine >= 1e7 ? (
+						<li class = 'check'><i>LEGEND</i> achievement (earn 10,000,000g) <strong>done</strong></li>
+					) : (
+						<li class = 'x'><i>LEGEND</i> achievement (earn 10,000,000g) -- <strong>need {lgreenhorn_diff}g more</strong></li>
+					)}
+				</ul>
 			</ul>
 		);
 	}

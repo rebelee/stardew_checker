@@ -45,3 +45,80 @@
   border: 5px groove rgb(196, 108, 26);
   border-radius: 5px;
 }
+
+ul.main {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.indent {
+  list-style: none;
+}
+
+li.main-list {
+  padding-left: 16px;
+}
+
+li.main-list:before {
+  content: "\263C";
+  padding-right: 8px;
+  /*color: blue;*/
+}
+
+li.check {
+  padding-left: 16px;
+}
+
+li.check:before {
+  content: "\2714";
+  padding-right: 8px;
+  color: green;
+}
+
+li.x {
+  padding-left: 16px;
+}
+
+li.x:before {
+  content: "\2718";
+  padding-right: 8px;
+  color: red;
+}
+
+li.none {
+  padding-left: 16px;
+}
+
+li.none:before {
+  content: none;
+  padding-right: 8px;
+}
+
+li.indent {
+  padding-left: 16px;
+}
+
+li.indent:before {
+  content: "\2192";
+  padding-right: 8px;
+}
+
+.seen {
+  color: #006400;
+}
+
+.notseen{
+  color: #8B0000;
+}
+
+li.impossible {
+  padding-left: 16px;
+  color: grey;
+}
+
+li.impossible:before {
+  content:  "\2718";
+  padding-right: 8px;
+  color: grey;
+}
